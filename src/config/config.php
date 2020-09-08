@@ -21,6 +21,9 @@ return [
     */
     'rules' => [
         // 'XX' => 0.17,
+        'CH' => 0, // Switzerland
+        'TR' => 0, // Turkey
+        'NO' => 0 // Norway
     ],
 
     /*
