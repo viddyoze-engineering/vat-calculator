@@ -11,27 +11,35 @@ use Exception;
 class VatCalculatorConfig
 {
     /**
-     * @param array $array
-     * @return ConfigContract|null
+     * @var ConfigContract|null
      */
-    public static function createFromArray(array $array): ?ConfigContract
+    private $config;
+
+    /**
+     * VatCalculatorConfig constructor.
+     * @param array $config
+     */
+    public function __construct(array $config)
     {
-        try {
-            return new Repository($array);
-        } catch (Exception $e) {
-            return null;
-        }
+        $this->config = $this->create($config);
     }
 
     /**
-     * @param string $json
      * @return ConfigContract|null
      */
-    public static function createFromJson(string $json): ?ConfigContract
+    public function getConfig(): ?ConfigContract
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param array $array
+     * @return ConfigContract|null
+     */
+    public function create(array $array): ?ConfigContract
     {
         try {
-            $items = json_decode($json, true);
-            return new Repository($items);
+            return new Repository($array);
         } catch (Exception $e) {
             return null;
         }
